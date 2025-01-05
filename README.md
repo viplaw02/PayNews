@@ -29,14 +29,14 @@ A modern, responsive dashboard that integrates news articles and payout manageme
 
 ## Installation
 
-1. **Clone the repository:**
+1. Clone the repository:
 
     ```bash
     git clone https://github.com/your-username/responsive-news-payout-dashboard.git
     cd responsive-news-payout-dashboard
     ```
 
-2. **Install dependencies:**
+2. Install dependencies:
 
     ```bash
     npm install
@@ -58,7 +58,24 @@ A modern, responsive dashboard that integrates news articles and payout manageme
 
 ## Environment Variables
 
-You will need to create a **NewsAPI key** for the app to fetch news articles. Follow these steps:
+The application requires an `.env` file to store environment variables such as database connection, JWT secret, and the port number. Follow these steps:
+
+1. **Create an `.env` file in the root of your project directory.**
+2. Add the following environment variables to the `.env` file:
+
+    ```bash
+    DB_URL="mongodb://localhost:27017/Collage"
+    JWT_SECRET="your-jwt-secret"
+    PORT=3000
+    ```
+
+3. **Replace `your-jwt-secret`** with a secure secret key of your choice for JWT authentication.
+
+---
+
+## API Key Setup for NewsAPI
+
+You will also need a **NewsAPI key** to fetch news articles. Follow these steps:
 
 1. Go to [NewsAPI](https://newsapi.org/) and sign up.
 2. Create an API key.
@@ -85,3 +102,16 @@ You will need to create a **NewsAPI key** for the app to fetch news articles. Fo
     /images             // Any images used in the app.
   /styles
     styles.css          // Custom styles (if any).
+.env                    // Environment variables file.
+```
+
+---
+
+## Deployment
+
+Once the application is running locally, you can deploy it using services like **Vercel**, **Netlify**, or **Heroku**. Ensure the `.env` file is configured correctly on your deployment platform.
+
+---
+
+Feel free to reach out for any issues or feature requests! 🚀
+
