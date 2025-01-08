@@ -11,9 +11,15 @@ app.use(express.json())
 app.use(cors(AllowedOrigins))
 PORT = process.env.PORT||4000
 app.use('/api/v1',AllRoutes)
-app.get('/',(req,res)=>{
-    res.send('<h1>Welcome to e-commerse</h1>')
+app.get('/health',(req,res)=>{
+    res.status(200).json({
+        success:true,
+        message:'server is running properly ',
+        uptime:process.uptime(),
+        timeStamp:new Date()
+    })
 })
+
 
 app.listen(PORT,()=>{
  console.log(`sever has been running at this port ${PORT}`);
