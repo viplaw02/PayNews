@@ -98,14 +98,14 @@ exports.Login = async (req, res) => {
   
       FindUser.password = undefined;
   
-      // Fetch articles related to the user
-      const articles = await NewsArticle.find(); // Fetch all articles or filter by some criteria
+      
+      const articles = await NewsArticle.find(); 
   
       return res.status(HttpStatusCode.Ok).json({
         success: true,
         findUser: FindUser,
         token,
-        articles, // Include articles in the response
+        articles, 
         message: "Successfully logged in",
       });
     } catch (error) {
@@ -124,39 +124,39 @@ exports.Login = async (req, res) => {
    try {
      const receivedArticles = req.body;
      console.log(receivedArticles);
-      // Articles with payout rates sent by the frontend
+      
      if (!receivedArticles || receivedArticles.length === 0) {
        return res.status(400).send({ message: 'No articles provided.' });
      }
  
      const savedArticles = [];
  
-     // Loop through each received article and save to database
+     
      for (let article of receivedArticles) {
-       // Check if article title or pay is empty, and skip it if true
+       
        if (!article.title || !article.pay) {
          console.log(`Skipping invalid article: ${article.title}`);
-         continue; // Skip articles with empty title or pay
+         continue; 
        }
  
-       const totalPayout = article.totalPayout || 0; // If totalPayout is not provided, default to 0
+       const totalPayout = article.totalPayout || 0; 
  
-       // Create a new NewsArticle document with 'pay' and 'totalPayout'
+    
        const newsArticle = new NewsArticle({
-         title: article.title,      // Article title
-         pay: article.pay,          // Payout rate (from the request body)
-         totalPayout: totalPayout,  // Total payout (calculated based on pay or provided)
+         title: article.title,      
+         pay: article.pay,          
+         totalPayout: totalPayout,  
        });
  
-       // Save the article to the database
+       
        const savedArticle = await newsArticle.save();
-       savedArticles.push(savedArticle); // Store saved article for response
+       savedArticles.push(savedArticle); 
      }
  
-     // Send success response with the saved articles
+     
      res.status(200).send({
        message: 'News articles saved successfully.',
-       articles: savedArticles, // Return the saved articles
+       articles: savedArticles, 
      });
  
    } catch (error) {
